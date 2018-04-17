@@ -127,6 +127,11 @@ let colors = {
   'pink-light': '#fa7ea8',
   'pink-lighter': '#ffbbca',
   'pink-lightest': '#ffebef',
+
+  /* Custom colors */
+
+  'brand': '#E95736',
+  'custom-grey': '#FAF8F8'
 }
 
 module.exports = {
@@ -194,6 +199,7 @@ module.exports = {
 
   fonts: {
     'sans': [
+      'Rubik',
       'system-ui',
       'BlinkMacSystemFont',
       '-apple-system',
@@ -602,6 +608,9 @@ module.exports = {
     '4xl': '90rem',
     '5xl': '100rem',
     'full': '100%',
+
+    '120' : '120px'
+
   },
 
 
@@ -622,6 +631,9 @@ module.exports = {
   maxHeight: {
     'full': '100%',
     'screen': '100vh',
+
+    '120': '120px'
+
   },
 
 
@@ -729,6 +741,7 @@ module.exports = {
     'lg': '0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08)',
     'inner': 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
     'none': 'none',
+    'sm': '0px 1px 1px rgba(0, 19, 25, 0.15)'
   },
 
 
