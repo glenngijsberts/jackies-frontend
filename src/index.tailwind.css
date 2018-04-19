@@ -4,11 +4,15 @@
 
 @tailwind utilities;
 
-.text-uppercase {
-    text-transform: uppercase
-}
-
 .img-responsive {
     width: 100%;
     height: auto;
+}
+
+.ingre .ing:after {
+    content: ', '
+}
+
+.ingre .ing:last-child:after {
+    content: ''
 }

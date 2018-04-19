@@ -131,6 +131,7 @@ let colors = {
   /* Custom colors */
 
   'brand': '#E95736',
+  'brand-dark': '#c5553c',
   'custom-grey': '#FAF8F8'
 }
 

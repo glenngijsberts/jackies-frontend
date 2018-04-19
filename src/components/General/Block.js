@@ -17,7 +17,7 @@ const Block = (props) => {
                 {/* <img className="w-full" src="https://tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains" /> */}
                 <div className="px-8 py-8">
                     <div className="font-bold text-lg text-brand text-center">
-                        <h2 className="mb-0">{props.title}</h2>
+                        <h2 className="mb-0">{props.children}</h2>
                     </div>
                 </div>
             </div>
