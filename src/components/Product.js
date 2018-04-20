@@ -6,7 +6,7 @@ const Product = () => {
 
     return (
         
-        <div className="flex flex-row items-center justify-between bg-white rounded px-8 py-8 shadow-sm">
+        <div className="flex flex-row items-center justify-between bg-white rounded px-8 py-8 shadow-sm hover:bg-grey-lighter cursor-pointer">
 
             <div className="">
                 <h2 className="text-brand uppercase">New York</h2>

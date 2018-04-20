@@ -34,11 +34,17 @@ export default class Index extends Component {
                     </Block>
                 </div>
 
-                <div class="flex flex-wrap -mb-4">
-                    <div class="w-1/2 mb-4 spacing-half">
+                <div className="flex flex-wrap -mb-4 -mx-2">
+                    <div className="w-1/2 mb-4 px-2">
                         <Product />
                     </div>
-                    <div class="w-1/2 mb-4 spacing-half">
+                    <div className="w-1/2 mb-4 px-2">
+                        <Product />
+                    </div>
+                    <div className="w-1/2 mb-4 px-2">
+                        <Product />
+                    </div>
+                    <div className="w-1/2 mb-4 px-2">
                         <Product />
                     </div>
                 </div>
