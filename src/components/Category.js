@@ -65,7 +65,7 @@ export default class Category extends Component {
                 </div>
 
                 {!count > 0 &&
-                <div className="bg-brand border-t border-b border-brand-dark text-white px-4 py-6" role="alert">
+                <div class="bg-brand border-t border-b border-brand-dark text-white px-4 py-6" role="alert">
                     <p>Geen producten gevonden</p>
                 </div>
                 }

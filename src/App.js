@@ -9,6 +9,8 @@ import Navigation from './components/General/Navigation'
 import Index from './components/Index'
 import Category from './components/Category'
 import Order from './components/Order'
+import PlacedOrders from './components/PlacedOrders'
+import NewOrder from './components/NewOrder'
 
 // Data
 import products from './Data'
@@ -35,8 +37,8 @@ class App extends Component {
     });
 
     // Filter down the state array to remove the product and get new products array
-    let products = this.state.products.filter((product) => {
-      return product != product;
+    let products = this.state.products.filter((item) => {
+      return item != product;
     });
 
     // Get the ingredient object 
@@ -74,9 +76,18 @@ class App extends Component {
             <Navigation logo="Jackies" />
             <Switch>
               <Route exact path="/" component={Index} />
+              <Route exact path="/orders" component={PlacedOrders} />
+              <Route exact path="/orders/:id" render={(props) => <NewOrder {...props} />} />
               <Route exact path="/:category" render={(props) => <Category {...props} products={this.state.products} />}/>
               <Route exact path="/:category/:id" render={(props) => <Order {...props} toggleIngredient={this.toggleIngredient} products={this.state.products} />}/>
             </Switch>
+
+            {/* Shortcut to orders */}
+            <Link to="/orders" className="no-underline">
+              <div className="p-4 bg-brand text-white fixed pin-b pin-r">
+                Orders
+              </div>
+            </Link>
 
           </div>
         </Router>

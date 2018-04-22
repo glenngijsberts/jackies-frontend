@@ -7,6 +7,14 @@ const products = [
         ingredients: [{name: 'Creamcheese', value: 1}, {name: 'Gerookte zalm', value: 1}, {name: 'Rode ui', value: 1}, {name: 'Tomaat', value: 1}],
         active: 1,
         category: 'bagels'
+    },
+    {
+        id: 2,
+        name: 'Nutella',
+        price: 4.50,
+        ingredients: [{name: 'Nutella', value: 1}, {name: 'Roomboter', value: 1}],
+        active: 1,
+        category: 'sweeties'
     }
 
 ]

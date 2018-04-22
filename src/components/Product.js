@@ -9,10 +9,10 @@ const Product = (props) => {
         <div className="flex flex-row items-center justify-between bg-white rounded px-8 py-8 shadow-sm hover:bg-grey-lighter cursor-pointer">
 
             <div className="">
-                <h2 className="text-brand uppercase">{props.title}</h2>
+                <h2 className="text-brand uppercase no-underline">{props.title}</h2>
                 <div className="ingre">
                     <p>
-                    {ingredients.map((item) => {
+                    {ingredients && ingredients.map((item) => {
                         return <span className="ing text-grey-dark text-sm" key={item.name}>{item.name}</span>
                     })}
                     </p>

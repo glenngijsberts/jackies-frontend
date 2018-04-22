@@ -7,7 +7,6 @@ import './index.css';
 // Custom CSS
 import './custom.css';
 
-
 // Custom components
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';

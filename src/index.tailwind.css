@@ -16,3 +16,9 @@
 .ingre .ing:last-child:after {
     content: ''
 }
+
+.float-button-right {
+    right: 20px;
+    bottom: 20px;
+    border-radius: 50%;
+}
