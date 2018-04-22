@@ -1,61 +1,86 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Order = () => {
+class Order extends React.Component {
 
-    const items = ['Creamcheese', 'Gerookte zalm', 'Rode ui', 'Tomaat'];
+    constructor(props) {
+        super(props);
+    }
 
-    return (
+    handleToggle(e) {
 
-            <form className="container mx-auto px-4 pt-6">
+        //Handle the toggle, set the value of the ingredient to 0 or 1
 
-            <Link to="/" className="mb-4 relative block text-brand hover:text-brand-dark">&larr; Terug naar categorie</Link>
+    }
+ 
+    getData(e, product) {
+
+        e.preventDefault();
+
+        console.log(product)
+
+    }
+
+    render() {
+
+        const product = this.props.products.find((product) => {
+            return product.id == this.props.match.params.id;
+        });
+
+        return (
+
+            <form className="container mx-auto px-4 pt-6" onSubmit={(e) => this.getData(e, product) }>
+
+                <Link to={`/${this.props.match.params.category}`} className="mb-4 relative block text-brand hover:text-brand-dark">&larr; Terug naar categorie</Link>
 
                 <div className="flex flex-row items-center justify-between bg-white rounded px-8 py-8 shadow-sm mb-4">
 
                     <div className="">
-                        <h2 className="text-brand uppercase">New York</h2>
+                        <h2 className="text-brand uppercase">{product && product.name}</h2>
                         <div className="ingre">
                             <p>
-                                {items.map((item) => {
-                                    return <span className="ing text-grey-dark text-sm">{item}</span>
+                                {product && product.ingredients.map((item) => {
+                                    return <span className="ing text-grey-dark text-sm" key={item.name}>{item.name}</span>
                                 })}
                             </p>
                         </div>
                     </div>
 
                     <div className="">
-                        <h3 className="text-brand text-4xl">5,99</h3>
+                        <h3 className="text-brand text-4xl">&euro;{product && product.price}</h3>
                     </div>
 
                 </div>
 
                 <div className="flex flex-wrap mb-4 -mx-2">
 
-                    {items.map((item) => {
-                        return(
-                            <div class="w-1/2 mb-4 px-2">
+                    {product && product.ingredients.map((item) => {
+                        return (
+                            <div className="w-1/2 mb-4 px-2" key={item.name}>
                                 <div className="flex flex-row items-center justify-between bg-white rounded px-8 py-8 shadow-sm">
                                     <div>
-                                        <h3 className="text-grey-dark font-normal text-sm">{item}</h3>
+                                        <h3 className="text-grey-dark font-normal text-sm">{item.name}</h3>
                                     </div>
                                     <div>
-                                        <input type="checkbox" name="ingredient" checked/>
+                                        <input type="checkbox" checked={item.value} name={item} onChange={(e) => this.handleToggle(e)}/>
                                     </div>
                                 </div>
-                            </div>  
+                            </div>
                         );
                     })}
 
                 </div>
 
-            <button type="submit" className="bg-brand hover:bg-brand-dark text-white font-bold py-4 px-4 rounded">
-                Order this product
+                <button type="submit" className="bg-brand hover:bg-brand-dark text-white font-bold py-4 px-4 rounded">
+                    Order this product
             </button>
 
             </form>
 
-    );
+        );
+
+    }
+
 }
 
 export default Order;

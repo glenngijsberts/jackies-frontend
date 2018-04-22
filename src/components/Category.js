@@ -5,21 +5,32 @@ import { Link } from 'react-router-dom';
 // Custom components
 import Block from './General/Block'
 import Product from './Product'
+
 // images
 import bagel from '../img/bagel.png'
 import coffee from '../img/coffee.png'
 import cupcake from '../img/cupcake.png'
 import fruit from '../img/fruit.png'
 
-export default class Index extends Component {
+export default class Category extends Component {
 
     constructor(props) {
         super(props);
+        this.routeToProduct = this.routeToProduct.bind(this);
+    }
+
+    componentWillMount() {
+
+    }
+
+    routeToProduct(id) {
+        this.props.history.push(`/${this.props.match.params.category}/${id}`);
     }
 
     render() {
 
         const { params } = this.props.match;
+        let count = 0;
 
         return (
 
@@ -35,19 +46,29 @@ export default class Index extends Component {
                 </div>
 
                 <div className="flex flex-wrap -mb-4 -mx-2">
-                    <div className="w-1/2 mb-4 px-2">
-                        <Product />
-                    </div>
-                    <div className="w-1/2 mb-4 px-2">
-                        <Product />
-                    </div>
-                    <div className="w-1/2 mb-4 px-2">
-                        <Product />
-                    </div>
-                    <div className="w-1/2 mb-4 px-2">
-                        <Product />
-                    </div>
+
+                    {this.props.products && this.props.products.filter((product) => {
+
+                        return product.category == params.category;
+
+                    }).map((product) => {
+
+                        count++;
+
+                        return(
+                            <div className="w-1/2 mb-4 px-2" key={product.id} onClick={() => this.routeToProduct(product.id)}>
+                                <Product title={product.name} ingredients={product.ingredients} price={product.price} /> {/* This is another component */}
+                            </div>
+                        );
+                    })}
+                    
                 </div>
+
+                {!count > 0 &&
+                <div className="bg-brand border-t border-b border-brand-dark text-white px-4 py-6" role="alert">
+                    <p>Geen producten gevonden</p>
+                </div>
+                }
 
 
 
