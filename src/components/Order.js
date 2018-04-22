@@ -7,9 +7,13 @@ class Order extends React.Component {
         super(props);
     }
 
-    handleToggle(e) {
+    handleToggle(e, item, product) {
 
-        //Handle the toggle, set the value of the ingredient to 0 or 1
+        //Get value from checkbox and set it the opposite
+        let value = e.target.checked ? 1 : 0;
+
+        //Pass down the item (ingredient) and parent product and also the value
+        this.props.toggleIngredient(item, product, value);
 
     }
  
@@ -62,7 +66,7 @@ class Order extends React.Component {
                                         <h3 className="text-grey-dark font-normal text-sm">{item.name}</h3>
                                     </div>
                                     <div>
-                                        <input type="checkbox" checked={item.value} name={item} onChange={(e) => this.handleToggle(e)}/>
+                                        <input type="checkbox" checked={item.value} name={item} onChange={(e) => this.handleToggle(e, item, product)}/>
                                     </div>
                                 </div>
                             </div>
