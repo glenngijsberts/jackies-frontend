@@ -77,7 +77,7 @@ class Order extends React.Component {
 
                 <button type="submit" className="bg-brand hover:bg-brand-dark text-white font-bold py-4 px-4 rounded">
                     Order this product
-            </button>
+                </button>
 
             </form>
 

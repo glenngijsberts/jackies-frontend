@@ -2,6 +2,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
+// Firebase
+import base from './base';
+
 // Custom components
 import Navigation from './components/General/Navigation'
 
@@ -14,6 +17,7 @@ import NewOrder from './components/NewOrder'
 
 // Data
 import products from './Data'
+import orders from './Orders'
 
 class App extends Component {
 
@@ -22,10 +26,12 @@ class App extends Component {
     super(props);
 
     this.state = {
-      products: []
+      products: [],
+      orders: []
     }
 
     this.toggleIngredient = this.toggleIngredient.bind(this);
+    this.getOrders = this.getOrders.bind(this);
 
   }
 
@@ -59,8 +65,26 @@ class App extends Component {
 
   }
 
-  componentWillMount() {
+  getOrders() {
+    this.setState({
+      orders: orders
+    });
+  }
 
+  componentDidMount() {
+    // Sync with firebase database
+    this.ref = base.syncState(`/orders`, {
+      context: this,
+      state: 'orders'
+    });
+  }
+
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
+  }
+
+  componentWillMount() {
+    //Fake AJAX call for products
     setTimeout(() => {
       this.setState({products});
     }, 100);
@@ -76,8 +100,8 @@ class App extends Component {
             <Navigation logo="Jackies" />
             <Switch>
               <Route exact path="/" component={Index} />
-              <Route exact path="/orders" component={PlacedOrders} />
-              <Route exact path="/orders/:id" render={(props) => <NewOrder {...props} />} />
+              <Route exact path="/orders" render={(props) => <PlacedOrders {...props} orders={this.state.orders} />} />
+              <Route exact path="/orders/:id" render={(props) => <NewOrder {...props} orders={this.state.orders} />} />
               <Route exact path="/:category" render={(props) => <Category {...props} products={this.state.products} />}/>
               <Route exact path="/:category/:id" render={(props) => <Order {...props} toggleIngredient={this.toggleIngredient} products={this.state.products} />}/>
             </Switch>

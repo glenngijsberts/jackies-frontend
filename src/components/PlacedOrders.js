@@ -2,43 +2,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-// Firebase
-import base from '../base';
-
 // Custom components
 import Block from './General/Block'
 import Product from './Product'
 
-// Import static data orders
-import orders from '../Orders';
 
 export default class PlacedOrders extends Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {
-            orders: []
-        }
-
-        this.getOrders = this.getOrders.bind(this);
         this.goToOrder = this.goToOrder.bind(this);
-
-    }
-
-    componentDidMount() {
-        // Sync with firebase database
-        this.ref = base.syncState(`/orders`, {
-            context: this,
-            state: 'orders'
-        });
-    }
-
-    getOrders() {
-
-        this.setState({
-            orders: orders
-        });
 
     }
 
@@ -61,13 +35,13 @@ export default class PlacedOrders extends Component {
                 <div className="flex mb-4">
                     <div className="w-full">
 
-                        {this.state.orders.filter((order) => order.completed === 0).map((order) => {
+                        {this.props.orders.filter((order) => order.completed === 0).map((order) => {
 
                             console.log(order);
 
                             return (
                                 <div className="w-full mb-4" key={order.id}>
-                                    <Link to="/orders/1" className="no-underline">
+                                    <Link to={`/orders/${order.id}`} className="no-underline">
                                         <Product title={order.name} price={order.price} />
                                     </Link>
                                 </div>
@@ -85,13 +59,13 @@ export default class PlacedOrders extends Component {
                 <div className="flex mb-4">
                     <div className="w-full">
 
-                        {this.state.orders.filter((order) => order.completed === 1).map((order) => {
+                        {this.props.orders.filter((order) => order.completed === 1).map((order) => {
 
                             console.log(order);
 
                             return (
                                 <div className="w-full mb-4" key={order.id}>
-                                    <Link to="/orders/1" className="no-underline">
+                                    <Link to={`/orders/${order.id}`} className="no-underline">
                                         <Product title={order.name} price={order.price} />
                                     </Link>
                                 </div>
@@ -101,10 +75,6 @@ export default class PlacedOrders extends Component {
 
                     </div>
                 </div>
-
-
-
-
 
             </div>
 
