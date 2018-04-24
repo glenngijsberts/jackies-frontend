@@ -36,9 +36,7 @@ export default class PlacedOrders extends Component {
                     <div className="w-full">
 
                         {this.props.orders.filter((order) => order.completed === 0).map((order) => {
-
-                            console.log(order);
-
+                            
                             return (
                                 <div className="w-full mb-4" key={order.id}>
                                     <Link to={`/orders/${order.id}`} className="no-underline">

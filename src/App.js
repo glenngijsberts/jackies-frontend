@@ -32,6 +32,7 @@ class App extends Component {
 
     this.toggleIngredient = this.toggleIngredient.bind(this);
     this.getOrders = this.getOrders.bind(this);
+    this.finishOrder = this.finishOrder.bind(this);
 
   }
 
@@ -71,6 +72,26 @@ class App extends Component {
     });
   }
 
+  finishOrder(o) {
+    
+    // Filter down the state to get state without submitted order
+    let orders = this.state.orders.filter((order) => {
+      return order.id != o.id;
+    });
+
+    // Change completed to finish order
+    o.completed = 1;
+
+    // Push the finished order back to orders array
+    orders.push(o);
+
+    // Set array as new state
+    this.setState({
+      orders: orders
+    });
+    
+  }
+
   componentDidMount() {
     // Sync with firebase database
     this.ref = base.syncState(`/orders`, {
@@ -101,7 +122,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Index} />
               <Route exact path="/orders" render={(props) => <PlacedOrders {...props} orders={this.state.orders} />} />
-              <Route exact path="/orders/:id" render={(props) => <NewOrder {...props} orders={this.state.orders} />} />
+              <Route exact path="/orders/:id" render={(props) => <NewOrder {...props} orders={this.state.orders} finishOrder={this.finishOrder} />} />
               <Route exact path="/:category" render={(props) => <Category {...props} products={this.state.products} />}/>
               <Route exact path="/:category/:id" render={(props) => <Order {...props} toggleIngredient={this.toggleIngredient} products={this.state.products} />}/>
             </Switch>

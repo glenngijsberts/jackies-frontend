@@ -21,8 +21,6 @@ class Order extends React.Component {
 
         e.preventDefault();
 
-        console.log(product)
-
     }
 
     render() {

@@ -10,11 +10,18 @@ const NewOrder = (props) => {
         return order.id == props.match.params.id;
     });
 
-    console.log(order);
+    function finishOrder(e) {
+
+        e.preventDefault();
+        props.finishOrder(order);
+
+        props.history.push(`/orders/`);
+
+    }
     
     return (
         
-        <form className="container mx-auto px-4 pt-6">
+        <form className="container mx-auto px-4 pt-6" onSubmit={finishOrder}>
 
             <Link to="/orders" className="mb-4 relative block text-brand hover:text-brand-dark">&larr; Terug naar bestellingen</Link>
 
@@ -36,9 +43,16 @@ const NewOrder = (props) => {
 
             </div>
 
-            <button type="submit" className="bg-brand hover:bg-brand-dark text-white font-bold py-4 px-4 rounded mt-4">
-                Afronden
-            </button>
+            {order && order.completed == 0 &&
+                
+                // Only visible for orders that are not completed yet
+                <button type="submit" className="bg-brand hover:bg-brand-dark text-white font-bold py-4 px-4 rounded mt-4">
+                    Afronden
+                </button>
+                
+                // Create a delete button here for orders that are completed
+
+            }
 
         </form>
         
