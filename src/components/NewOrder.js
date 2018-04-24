@@ -19,7 +19,7 @@ const NewOrder = (props) => {
             <Link to="/orders" className="mb-4 relative block text-brand hover:text-brand-dark">&larr; Terug naar bestellingen</Link>
 
             <div className="flex mb-4">
-                <h3 className="uppercase text-lg text-grey-dark">{order && order.name}</h3>
+                <h3 className="uppercase text-lg text-grey-dark">{order && order.name} {order && `€${order.price}`}</h3>
             </div>
 
             <div className="flex flex-wrap -mb-4 -mx-2">
@@ -28,7 +28,7 @@ const NewOrder = (props) => {
 
                     return(
                         <div className="w-1/2 mb-4 px-2" key={item.name}>
-                            <Product title={item.name} ingredient={true} />
+                            <Product title={item.name} ingredient={true} ingredientValue={item.value} price={item.price} />
                         </div>
                     );
 
