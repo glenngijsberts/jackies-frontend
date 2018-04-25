@@ -33,6 +33,7 @@ class App extends Component {
     this.toggleIngredient = this.toggleIngredient.bind(this);
     this.getOrders = this.getOrders.bind(this);
     this.finishOrder = this.finishOrder.bind(this);
+    this.addToOrders = this.addToOrders.bind(this);
 
   }
 
@@ -64,6 +65,12 @@ class App extends Component {
       products
     });
 
+  }
+
+  addToOrders(p) {
+    
+    this.setState({ orders: [...this.state.orders, p] });
+    
   }
 
   getOrders() {
@@ -124,7 +131,7 @@ class App extends Component {
               <Route exact path="/orders" render={(props) => <PlacedOrders {...props} orders={this.state.orders} />} />
               <Route exact path="/orders/:id" render={(props) => <NewOrder {...props} orders={this.state.orders} finishOrder={this.finishOrder} />} />
               <Route exact path="/:category" render={(props) => <Category {...props} products={this.state.products} />}/>
-              <Route exact path="/:category/:id" render={(props) => <Order {...props} toggleIngredient={this.toggleIngredient} products={this.state.products} />}/>
+              <Route exact path="/:category/:id" render={(props) => <Order {...props} toggleIngredient={this.toggleIngredient} addToOrders={this.addToOrders} products={this.state.products} />}/>
             </Switch>
 
             {/* Shortcut to orders */}

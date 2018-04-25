@@ -5,6 +5,9 @@ class Order extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.addToOrders = this.addToOrders.bind(this);
+
     }
 
     handleToggle(e, item, product) {
@@ -17,9 +20,25 @@ class Order extends React.Component {
 
     }
  
-    getData(e, product) {
+    addToOrders(e, product) {
 
         e.preventDefault();
+
+        // Function to generate random id
+        function guidGenerator() {
+            var S4 = function () {
+                return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+            };
+            return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+        }
+        
+        // Set the product id to a random id for the order
+        product.id = guidGenerator();
+
+        // Push product to the parent
+        this.props.addToOrders(product);
+        // Push to the home view
+        this.props.history.push(`/`);
 
     }
 
@@ -31,7 +50,7 @@ class Order extends React.Component {
 
         return (
 
-            <form className="container mx-auto px-4 pt-6" onSubmit={(e) => this.getData(e, product) }>
+            <form className="container mx-auto px-4 pt-6" onSubmit={(e) => this.addToOrders(e, product) }>
 
                 <Link to={`/${this.props.match.params.category}`} className="mb-4 relative block text-brand hover:text-brand-dark">&larr; Terug naar categorie</Link>
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import checkmark from '../img/check-mark.png';
-import errormark from '../img/error.png';
 
 const Product = (props) => {
 
@@ -23,7 +22,6 @@ const Product = (props) => {
                 </div>    
             </div>
             
-            {/* For the products */}
             {props.price &&
             
                 <div className="">
@@ -31,11 +29,10 @@ const Product = (props) => {
                 </div>
 
             }
-            
-            {/* For the orders */}
-            {props.ingredient && props.ingredientValue != null &&
 
-                <img src={props.ingredientValue == 1 ? checkmark : errormark} alt={props.ingredientValue == 1 ? `Check ${props.title}` : `Niet check ${props.title}`} />
+            {props.ingredient && props.ingredientValue &&
+
+                <img src={checkmark} alt={props.ingredientValue == 1 ? `Check ${props.title}` : `Niet check ${props.title}`} />
 
             }
 

@@ -6,12 +6,6 @@ import { Link } from 'react-router-dom';
 import Block from './General/Block'
 import Product from './Product'
 
-// images
-import bagel from '../img/bagel.png'
-import coffee from '../img/coffee.png'
-import cupcake from '../img/cupcake.png'
-import fruit from '../img/fruit.png'
-
 export default class Category extends Component {
 
     constructor(props) {
@@ -65,7 +59,7 @@ export default class Category extends Component {
                 </div>
 
                 {!count > 0 &&
-                <div class="bg-brand border-t border-b border-brand-dark text-white px-4 py-6" role="alert">
+                <div className="bg-brand border-t border-b border-brand-dark text-white px-4 py-6" role="alert">
                     <p>Geen producten gevonden</p>
                 </div>
                 }

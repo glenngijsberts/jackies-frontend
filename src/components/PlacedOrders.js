@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 // Custom components
-import Block from './General/Block'
 import Product from './Product'
 
 
