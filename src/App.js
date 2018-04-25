@@ -14,10 +14,7 @@ import Category from './components/Category'
 import Order from './components/Order'
 import PlacedOrders from './components/PlacedOrders'
 import NewOrder from './components/NewOrder'
-
-// Data
-import products from './Data'
-import orders from './Orders'
+import Products from './components/Products'
 
 class App extends Component {
 
@@ -31,9 +28,9 @@ class App extends Component {
     }
 
     this.toggleIngredient = this.toggleIngredient.bind(this);
-    this.getOrders = this.getOrders.bind(this);
     this.finishOrder = this.finishOrder.bind(this);
     this.addToOrders = this.addToOrders.bind(this);
+    this.toggleActiveProduct = this.toggleActiveProduct.bind(this);
 
   }
 
@@ -67,16 +64,39 @@ class App extends Component {
 
   }
 
+  toggleActiveProduct(p) {
+    
+    // Create copy of proudcts
+    let products = [...this.state.products];
+
+    // Get the product that will change active
+    let currentProduct = products.find((product) => {
+      return product == p;
+    });
+
+    // If active set not active, otherwise set active
+    currentProduct.active == 0 ? currentProduct.active = 1 : currentProduct.active = 0;
+
+    // Map tho every product to see if it matches the product that will change and if so, replace it with the new product
+    products.map((product) => {
+
+      if (product.id == currentProduct.id) {
+        product = currentProduct;
+      }
+
+      return product;
+
+    });
+
+    // Set the new array
+    this.setState({products});
+
+  }
+
   addToOrders(p) {
     
     this.setState({ orders: [...this.state.orders, p] });
     
-  }
-
-  getOrders() {
-    this.setState({
-      orders: orders
-    });
   }
 
   finishOrder(o) {
@@ -105,6 +125,12 @@ class App extends Component {
       context: this,
       state: 'orders'
     });
+
+    this.ref = base.syncState(`/products`, {
+      context: this,
+      state: 'products'
+    });
+
   }
 
   componentWillUnmount() {
@@ -112,10 +138,6 @@ class App extends Component {
   }
 
   componentWillMount() {
-    //Fake AJAX call for products
-    setTimeout(() => {
-      this.setState({products});
-    }, 100);
     
   }
 
@@ -128,6 +150,7 @@ class App extends Component {
             <Navigation logo="Jackies" />
             <Switch>
               <Route exact path="/" component={Index} />
+              <Route exact path="/products" render={(props) => <Products {...props} products={this.state.products} toggleActiveProduct={this.toggleActiveProduct} />} />
               <Route exact path="/orders" render={(props) => <PlacedOrders {...props} orders={this.state.orders} />} />
               <Route exact path="/orders/:id" render={(props) => <NewOrder {...props} orders={this.state.orders} finishOrder={this.finishOrder} />} />
               <Route exact path="/:category" render={(props) => <Category {...props} products={this.state.products} />}/>
@@ -138,6 +161,13 @@ class App extends Component {
             <Link to="/orders" className="no-underline">
               <div className="p-4 bg-brand text-white fixed pin-b pin-r">
                 Orders
+              </div>
+            </Link>
+
+            {/* Shortcut turn on/off products */}
+            <Link to="/products" className="no-underline">
+              <div className="p-4 bg-brand text-white fixed pin-b pin-l">
+                Products
               </div>
             </Link>
 

@@ -12,8 +12,8 @@ You can find the most recent version of this guide [here](https://github.com/fac
 
 * Fix the ESLint warnings
 * More visuals for recognition of products
-* Feature to add products with Firebase realtime database
-* Turn on/off products dynamically
+* Feature to add products with Firebase realtime database.. Almost done
+* ~~Turn on/off products dynamically~~
 * Authentication with Firebase to control the application
 * More to come.. Mobile app? Who knows..
 
