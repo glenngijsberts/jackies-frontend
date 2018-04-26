@@ -15,6 +15,7 @@ import Order from './components/Order'
 import PlacedOrders from './components/PlacedOrders'
 import NewOrder from './components/NewOrder'
 import Products from './components/Products'
+import AddProduct from './components/AddProduct'
 
 class App extends Component {
 
@@ -151,6 +152,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Index} />
               <Route exact path="/products" render={(props) => <Products {...props} products={this.state.products} toggleActiveProduct={this.toggleActiveProduct} />} />
+              <Route exact path="/products/add" render={(props) => <AddProduct {...props} /> } />
               <Route exact path="/orders" render={(props) => <PlacedOrders {...props} orders={this.state.orders} />} />
               <Route exact path="/orders/:id" render={(props) => <NewOrder {...props} orders={this.state.orders} finishOrder={this.finishOrder} />} />
               <Route exact path="/:category" render={(props) => <Category {...props} products={this.state.products} />}/>

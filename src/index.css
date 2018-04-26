@@ -638,6 +638,19 @@ button,
   }
 }
 
+.custom-input {
+  width: 100%;
+  margin-bottom: .5rem;
+  box-shadow: 0 1px 1px rgba(0, 19, 25, .15);
+  padding: 1.5rem;
+  border-radius: .25rem;
+  outline: 0;
+  border: 0;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
 .list-reset {
   list-style: none;
   padding: 0;

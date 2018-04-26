@@ -2,6 +2,15 @@
 
 @tailwind components;
 
+.custom-input {
+    @apply .w-full .mb-2 .shadow-sm .p-6 .rounded;
+    outline: 0;
+    border: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
 @tailwind utilities;
 
 .img-responsive {
@@ -22,3 +31,4 @@
     bottom: 20px;
     border-radius: 50%;
 }
+
