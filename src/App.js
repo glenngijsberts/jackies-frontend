@@ -32,6 +32,7 @@ class App extends Component {
     this.finishOrder = this.finishOrder.bind(this);
     this.addToOrders = this.addToOrders.bind(this);
     this.toggleActiveProduct = this.toggleActiveProduct.bind(this);
+    this.addProduct = this.addProduct.bind(this);
 
   }
 
@@ -120,6 +121,18 @@ class App extends Component {
     
   }
 
+  addProduct(p) {
+    
+    let products = [...this.state.products];
+
+    products.push(p);
+
+    this.setState({
+      products: products
+    });
+
+  }
+
   componentDidMount() {
     // Sync with firebase database
     this.ref = base.syncState(`/orders`, {
@@ -152,7 +165,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Index} />
               <Route exact path="/products" render={(props) => <Products {...props} products={this.state.products} toggleActiveProduct={this.toggleActiveProduct} />} />
-              <Route exact path="/products/add" render={(props) => <AddProduct {...props} /> } />
+              <Route exact path="/products/add" render={(props) => <AddProduct {...props} addProduct={this.addProduct} /> } />
               <Route exact path="/orders" render={(props) => <PlacedOrders {...props} orders={this.state.orders} />} />
               <Route exact path="/orders/:id" render={(props) => <NewOrder {...props} orders={this.state.orders} finishOrder={this.finishOrder} />} />
               <Route exact path="/:category" render={(props) => <Category {...props} products={this.state.products} />}/>
