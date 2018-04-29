@@ -30,6 +30,7 @@ export default class AddProduct extends Component {
         this.tagChange = this.tagChange.bind(this);
         this.handleChanges = this.handleChanges.bind(this);
         this.handleForm = this.handleForm.bind(this);
+        this.deleteTag = this.deleteTag.bind(this);
 
     }
 
@@ -38,6 +39,17 @@ export default class AddProduct extends Component {
         this.setState({ tag: e.target.value });
     }
 
+    deleteTag(item) {
+        this.setState(prevState => {
+            return {
+                product: {
+                    ...prevState.product,
+                    ingredients: prevState.product.ingredients.filter((ingredient) => ingredient !== item)
+                }
+            }
+        });
+    }
+    
     handleKeyPress(e) {
 
         // if the event key == enter key
@@ -198,11 +210,11 @@ export default class AddProduct extends Component {
 
                     <div className="w-1/2 px-2">
                         <div className="mb-4">
-                            <input className="custom-input" type="text" name="productPrice" id="productPrice" placeholder="Vul ingredienten in" onChange={this.tagChange} onKeyDown={this.handleKeyPress} value={this.state.tag} />
-                            <p className="text-xs text-grey-dark">Druk spatie om een ingredient aan te maken</p>
+                            <input className="custom-input" type="text" name="productPrice" id="productPrice" placeholder="Vul ingredienten in" autoComplete="off" onChange={this.tagChange} onKeyDown={this.handleKeyPress} value={this.state.tag} />
+                            <p className="text-xs text-grey-dark">Druk spatie om een ingredient aan te maken (Klik op een ingredient om deze te verwijderen)</p>
                             {this.state.product.ingredients.map((item) => {
                                 return (
-                                    <p className="text-xs text-white bg-brand rounded p-4 mt-2 mb-2 mr-2 inline-block cursor-pointer" key={item.name}>{item.name}</p>
+                                    <p className="text-xs text-white bg-brand rounded p-4 mt-2 mb-2 mr-2 inline-block cursor-pointer" key={item.name} onClick={() => this.deleteTag(item)}>{item.name}</p>
                                 );
                             })}
                         </div>

@@ -128,8 +128,8 @@ class App extends Component {
     products.push(p);
 
     this.setState({
-      products: products
-    });
+      products
+    })
 
   }
 
