@@ -1,5 +1,9 @@
+// React deps
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+// Helper functions
+import guidGenerator from '../Helpers'
 
 class Order extends React.Component {
 
@@ -23,14 +27,6 @@ class Order extends React.Component {
     addToOrders(e, product) {
 
         e.preventDefault();
-
-        // Function to generate random id
-        function guidGenerator() {
-            var S4 = function () {
-                return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-            };
-            return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
-        }
         
         // Set the product id to a random id for the order
         product.id = guidGenerator();

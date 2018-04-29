@@ -17,5 +17,6 @@ You can find the most recent version of this guide [here](https://github.com/fac
 * ~~Turn on/off products dynamically~~
 * Authentication with Firebase to control the application
 * Make categories dynamic
+* Clean up directories
 * More to come.. Mobile app? Who knows..
 
